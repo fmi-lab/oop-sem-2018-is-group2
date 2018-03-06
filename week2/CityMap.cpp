@@ -8,13 +8,13 @@ class City {
 	int population;
 	bool capital;
 public:
-	City(char* _name = "", char* _country = "", int _population = 0, bool _capital = 0) //конструктор 2 в 1 (по подразбиране и с параметри)
+	/*City(char* _name = "", char* _country = "", int _population = 0, bool _capital = 0) //конструктор 2 в 1 (по подразбиране и с параметри)
 	{
 		strcpy(name, _name);
 		strcpy(country, _country);
 		population = _population;
 		capital = _capital;
-	}
+	}*/
 	void set_name(const char* _name) {
 		strcpy(name, _name);
 	}
@@ -27,19 +27,19 @@ public:
 	void set_capital(bool _capital) {
 		capital = _capital;
 	}
-	const char* get_name() {
+	const char* get_name() const{
 		return name;
 	}
-	const char* get_country() {
+	const char* get_country() const {
 		return country;
 	}
-	int get_population() {
+	int get_population() const {
 		return population;
 	}
-	bool get_capital() {
+	bool get_capital() const{
 		return capital;
 	}
-	void print() {
+	void print() const{
 		cout << "Name: " << name << endl;
 		cout << "Country: " << country << endl;
 		cout << "Population: " << population << endl;
@@ -50,7 +50,7 @@ class Map {
 	City cities[30];
 	int capacity;
 public:
-	Map(int _capacity = 0) : capacity(_capacity){} //друг начин за дефиниране на конструктор
+	//Map(int _capacity = 0) : capacity(_capacity){} //друг начин за дефиниране на конструктор
 	void set_capacity(int _capacity) {
 		capacity=_capacity;
 	}
@@ -66,25 +66,25 @@ public:
 			return true;
 		}
 	}
-	void allCapitals() {
+	void allCapitals() const{
 		for (int i = 0; i < capacity; i++) {
 			if (cities[i].get_capital()) cout << cities[i].get_country() << " - " << cities[i].get_name() << endl;
 		}
 	}
-	void moreThan(int number) {
+	void moreThan(int number) const{
 		for (int i = 0; i < capacity; i++) {
 			if (cities[i].get_population() > number) cities[i].print();
 		}
 	}
 	void filter(bool(*pred)(City)) {
 		ofstream bout;
-		bout.open("file.bin", ios::binary);
+		bout.open("file.bin", ios::binary);//отваряме файла като двоичен
 		for (int i = 0; i < capacity; i++) {
 			if (pred(cities[i])) bout.write((char*)&cities[i], sizeof(City));
 		}
 		bout.close();
 	}
-	bool member(City x) {
+	bool member(City x) const {
 		for (int i = 0; i < capacity; i++) {
 			if (!strcmp(cities[i].get_name(), x.get_name())) return true;
 		}
