@@ -17,13 +17,13 @@ public:
 	void setPrice(double);
 	void setStock(bool);// Има и други варианти за този сеттер, но е важно след работата му променливата inStock, да е коректно зададена.
 //Селектори за всички член данни. (getters)
-	const char* getBrand();
-	const char* getModel();
-	int getYear();
-	double getPrice();
-	bool getStock();
+	const char* getBrand() const;
+	const char* getModel() const;
+	int getYear() const;
+	double getPrice() const;
+	bool getStock() const;
 // Исканата функция print().
-	void print();
+	void print() const;
 };
 void Computer::setBrand(const char* _brand)
 {
@@ -45,15 +45,15 @@ void Computer::setStock(bool _available)
 {
 	inStock = _available;
 }
-const char* Computer::getBrand()
+const char* Computer::getBrand() const
 {
 	return brand;
 }
-const char* Computer::getModel()
+const char* Computer::getModel() const
 {
 	return model;
 }
-int Computer::getYear()
+int Computer::getYear() const
 {
 	return yearOfProduction;
 }
@@ -61,11 +61,11 @@ double Computer::getPrice()
 {
 	return price;
 }
-bool Computer::getStock()
+bool Computer::getStock() const
 {
 	return inStock;
 }
-void Computer::print()
+void Computer::print() const
 {
 	cout << "Brand: " << brand << endl;
 	cout << "Model: " << model << endl;
@@ -82,8 +82,8 @@ public:
 	void setCapacity(int);
 	bool add(Computer&);//Подаваме по псевдоним, за да не правим копие
 	bool sell(Computer&);
-	void showStore();
-	void report();
+	void showStore() const;
+	void report() const;
 	void filter(bool (*pred)(Computer&));
 };
 PCStore::PCStore(int _capacity = 0)
@@ -117,7 +117,7 @@ bool PCStore::sell(Computer& pc)
 	return false;
 
 }
-void PCStore::showStore()
+void PCStore::showStore() const
 {
 	for (int i = 0;i <= storeCapacity;i++)
 	{
@@ -128,7 +128,7 @@ void PCStore::showStore()
 		}
 	}
 }
-void PCStore::report()
+void PCStore::report() const
 {
 	ofstream fout("report.txt");
 	for (int i = 0;i <= storeCapacity;i++)
@@ -139,7 +139,7 @@ void PCStore::report()
 		}
 	}
 }
-void PCStore::filter(bool(*pred)(Computer& pc))
+void PCStore::filter(bool(*pred)(Computer& pc)) 
 {
 	for (int i = 0;i <= storeCapacity;i++)
 	{
