@@ -75,7 +75,7 @@ public:
 	}
 };
 class SeaMonster :public GamePlayer {
-//ÒÎÂÀ Å ÌÍÎÃÎ ÃĞÅØÍÎ!!!!
+//Ğ¢ĞĞ’Ğ Ğ• ĞœĞĞĞ“Ğ Ğ“Ğ Ğ•Ğ¨ĞĞ!!!!
 	Point currPos;
 	bool isCorrect(int r, int c) {
 		if (r < 0 || r >= N) return false;
