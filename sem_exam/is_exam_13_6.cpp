@@ -1,3 +1,4 @@
+//Task2 varA
 #include<iostream>
 #include<cassert>
 template<class U, class V>
